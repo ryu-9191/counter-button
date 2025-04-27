@@ -88,13 +88,13 @@
       if (fortuneMsg.textContent !== '') return; // すでに表示してたら二重表示しない
       const randomNum = Math.random();
       if (randomNum < 0.1) {
-        fortuneMsg.textContent = '本日の運勢: 小吉';
+        fortuneMsg.textContent = 'あなたの本日の運勢は小吉です。';
       } else if (randomNum < 0.6) {
-        fortuneMsg.textContent = '本日の運勢: 吉';
+        fortuneMsg.textContent = 'あなたの本日の運勢は吉です。';
       } else if (randomNum < 0.9) {
-        fortuneMsg.textContent = '本日の運勢: 中吉';
+        fortuneMsg.textContent = 'あなたの本日の運勢は中吉です。';
       } else {
-        fortuneMsg.textContent = '本日の運勢: 大吉';
+        fortuneMsg.textContent = 'あなたの本日の運勢は大吉！';
       }
     }
 
