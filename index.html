@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>一日3回ボタン</title>
+  <title>スタッフの対応が良かったなと思うことがあれば3回まで応してください。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -37,7 +37,7 @@
   </style>
 </head>
 <body>
-  <h1>今日のチャレンジ！</h1>
+  <h1>良かったと思う分1回〜3回まで押してください。</h1>
   <button id="pushBtn" onclick="pushButton()">押す！</button>
   <div id="message"></div>
   <div id="fortune"></div>
@@ -78,7 +78,7 @@
 
     function updateMessage() {
       if (pushCount >= 3) {
-        msg.textContent = 'やったね！今日の分は達成！';
+        msg.textContent = '３回押していただきありがとうございます！これからもよろしくお願いします。';
       } else {
         msg.textContent = `今日 ${pushCount} 回押しました（あと ${3 - pushCount} 回押せます）`;
       }
@@ -88,7 +88,7 @@
       if (fortuneMsg.textContent !== '') return; // すでに表示してたら二重表示しない
       const randomNum = Math.random();
       if (randomNum < 0.1) {
-        fortuneMsg.textContent = '運勢: 凶';
+        fortuneMsg.textContent = '運勢: 小吉';
       } else if (randomNum < 0.6) {
         fortuneMsg.textContent = '運勢: 吉';
       } else if (randomNum < 0.9) {
