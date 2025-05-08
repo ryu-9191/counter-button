@@ -53,7 +53,7 @@
     // すでに「いいね」を押したかを確認
     if (localStorage.getItem(todayKey)) {
       btn.disabled = true;
-      msg.textContent = '今日はすでに「いいね！」しました。ありがとうございます。';
+      msg.textContent = '今日はすでに「いいね！」をいただきました。ありがとうございます。';
       showFortune();
     }
 
@@ -62,7 +62,7 @@
       if (!localStorage.getItem(todayKey)) {
         localStorage.setItem(todayKey, 'true');  // 今日の「いいね」を記録
         btn.disabled = true;
-        msg.textContent = '「いいね！」ありがとうございます！';
+        msg.textContent = 'ありがとうございます！これからも努力いたします。';
 
         // Webhook へ送信（1回のみ）
         fetch(webhookURL, {
@@ -76,20 +76,7 @@
         showFortune();
       }
     }
-
-    function showFortune() {
-      if (fortuneMsg.textContent !== '') return;  // 二重表示しない
-      const randomNum = Math.random();
-      if (randomNum < 0.1) {
-        fortuneMsg.textContent = 'あなたの本日の運勢は凶です。';
-      } else if (randomNum < 0.6) {
-        fortuneMsg.textContent = 'あなたの本日の運勢は吉です。';
-      } else if (randomNum < 0.9) {
-        fortuneMsg.textContent = 'あなたの本日の運勢は中吉です。';
-      } else {
-        fortuneMsg.textContent = 'あなたの本日の運勢は大吉！';
-      }
-    }
+    
   </script>
 </body>
 </html>
