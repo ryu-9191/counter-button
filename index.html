@@ -68,7 +68,7 @@
         fetch(webhookURL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ liked: 1 }),
+          body: JSON.stringify({ count: 1 }),
         })
         .then(response => console.log('Webhook成功'))
         .catch(error => console.error('Webhookエラー:', error));
