@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>たまき耳鼻咽喉科のいいねボタン</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="zrNA6XvSONu5A6_Cbn8ye0HgNKoHJ0vFQGanyn6xqtE">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #f0f4c3);
+      padding: 40px;
+      margin: 0;
+    }
+    .card {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    button {
+      font-size: 24px;
+      padding: 15px 40px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    button:active {
+      transform: scale(0.97);
+    }
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    #message {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #333;
+    }
+    #fortune {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>たまき耳鼻咽喉科のいいねボタンです。<br>
+    スタッフの対応が良かったなと思っていただけたら、<br>
+    ボタンを押してください。</h1>
+
+    <button id="pushBtn" onclick="pushButton()">
+      <i class="fa fa-thumbs-up"></i> いいね！
+    </button>
+    <div id="message"></div>
+    <div id="fortune"></div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('pushBtn');
+    const msg = document.getElementById('message');
+    const fortuneMsg = document.getElementById('fortune');
+    const todayKey = 'likedOnce_' + new Date().toISOString().slice(0, 10);
+    const webhookURL = 'https://ancient-dawn-e882.tamaki-ent9.workers.dev/';
+
+    if (localStorage.getItem(todayKey)) {
+      btn.disabled = true;
+      msg.textContent = 'ありがとうございます！これからも努力いたします。';
+      showFortune();
+    }
+
+    function pushButton() {
+      if (!localStorage.getItem(todayKey)) {
+        localStorage.setItem(todayKey, 'true');
+        btn.disabled = true;
+        msg.textContent = 'ありがとうございます！これからも努力いたします。';
+
+        fetch(webhookURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ count: 1 }),
+        }).then(() => {
+          console.log('Webhook成功');
+        }).catch(error => {
+          console.error('Webhookエラー:', error);
+        });
+
+        showFortune();
+      }
+    }
+
+    function showFortune() {
+      const fortunes = [
+        '今日はいいことがあるかも！',
+        'いつもありがとうございます！',
+        'またのお越しをお待ちしています！',
+        'あなたの一言がスタッフの励みになります！'
+      ];
+      const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+      fortuneMsg.textContent = fortune;
+    }
+  </script>
+</body>
+</html>
