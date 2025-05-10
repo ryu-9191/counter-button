@@ -83,7 +83,7 @@
 
     if (localStorage.getItem(todayKey)) {
       btn.disabled = true;
-      msg.textContent = 'ありがとうございます！これからも努力いたします。';
+      msg.textContent = 'ありがとうございます！これからも精進いたします。';
       showFortune();
     }
 
@@ -91,7 +91,7 @@
       if (!localStorage.getItem(todayKey)) {
         localStorage.setItem(todayKey, 'true');
         btn.disabled = true;
-        msg.textContent = 'ありがとうございます！これからも努力いたします。';
+        msg.textContent = 'ありがとうございます！これからも精進いたします。';
 
         fetch(webhookURL, {
           method: 'POST',
@@ -107,16 +107,6 @@
       }
     }
 
-    function showFortune() {
-      const fortunes = [
-        '今日はいいことがあるかも！',
-        'いつもありがとうございます！',
-        'またのお越しをお待ちしています！',
-        'あなたの一言がスタッフの励みになります！'
-      ];
-      const fortune = fortunes[Math.floor(Math.random() * fortunes.length)];
-      fortuneMsg.textContent = fortune;
-    }
   </script>
 </body>
 </html>
